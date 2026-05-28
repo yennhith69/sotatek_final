@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Store</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <h1>Mini Store</h1>
+      </div>
+      <div class="cart-badge-wrapper">
+        <button class="cart-toggle" onclick="toggleCart()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout">
+
+    <!-- Product Section -->
+    <section class="products-section">
+      <div class="section-label">Bộ sưu tập</div>
+      <h2 class="section-title">Sản phẩm nổi bật</h2>
+
+      <div class="products" id="product-grid">
+
+        <div class="product" data-id="1">
+          <div class="product-image">
+            <div class="product-img-placeholder img-1">👕</div>
+            <span class="product-tag">Mới</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Áo thun</h3>
+            <p class="product-desc">Chất liệu cotton cao cấp, thoáng mát</p>
+            <div class="product-footer">
+              <span class="product-price">200.000 VNĐ</span>
+              <button class="btn-add" onclick="addToCart('Áo thun', 200000)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Thêm
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product" data-id="2">
+          <div class="product-image">
+            <div class="product-img-placeholder img-2">👖</div>
+            <span class="product-tag tag-hot">Hot</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Quần jean</h3>
+            <p class="product-desc">Dáng slim fit, bền đẹp, phong cách</p>
+            <div class="product-footer">
+              <span class="product-price">500.000 VNĐ</span>
+              <button class="btn-add" onclick="addToCart('Quần jean', 500000)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Thêm
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product" data-id="3">
+          <div class="product-image">
+            <div class="product-img-placeholder img-3">👟</div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Giày thể thao</h3>
+            <p class="product-desc">Đế êm, thiết kế hiện đại, năng động</p>
+            <div class="product-footer">
+              <span class="product-price">750.000 VNĐ</span>
+              <button class="btn-add" onclick="addToCart('Giày thể thao', 750000)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Thêm
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product" data-id="4">
+          <div class="product-image">
+            <div class="product-img-placeholder img-4">🧢</div>
+            <span class="product-tag tag-sale">Sale</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Mũ lưỡi trai</h3>
+            <p class="product-desc">Chống nắng tốt, nhiều màu sắc trẻ trung</p>
+            <div class="product-footer">
+              <span class="product-price">150.000 VNĐ</span>
+              <button class="btn-add" onclick="addToCart('Mũ lưỡi trai', 150000)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Thêm
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2 class="cart-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Giỏ hàng
+        </h2>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+
+      <ul id="cart-list" class="cart-list">
+        <li class="cart-empty" id="cart-empty-msg">
+          <span>🛍️</span>
+          <p>Giỏ hàng trống</p>
+        </li>
+      </ul>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Tổng cộng</span>
+          <span id="total" class="cart-total-amount">0 VNĐ</span>
+        </div>
+        <button class="btn-checkout" id="btn-checkout" disabled>
+          Thanh toán
+        </button>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
